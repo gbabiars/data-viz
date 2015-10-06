@@ -28,38 +28,26 @@ export default Ember.Component.extend({
 
     const calculateHeight = datum => Math.max(y(datum.value), minHeight);
 
-    container.selectAll('rect').
+    const getPoints = (datum, index) => {
+      let yTop = data.slice(0, index).map(calculateHeight).reduce((prev, curr) => prev + curr, 0) + index * borderSize;
+      let yBottom = yTop + calculateHeight(datum);
+
+      let xStart = yTop / 5;
+      let xEnd = yBottom / 5;
+
+      return [
+        { x: xStart, y: yTop },
+        { x: xEnd, y: yBottom },
+        { x: width - xEnd, y: yBottom },
+        { x: width - xStart, y: yTop }
+      ].map(c => `${c.x},${c.y}`).join(" ");
+    };
+
+    container.selectAll('polygon').
       data(data).
       enter().
-      append('rect').
-      attr('y', (datum, index) => {
-        return _.range(index).map(i => calculateHeight(data[i]) + borderSize).reduce((prev, curr) => prev + curr, 0);
-      }).
-      attr('width', width).
-      attr('height', calculateHeight).
+      append('polygon').
+      attr('points', getPoints).
       attr('fill', datum => datum.color);
-
-
-    let leftTriangleCoordinates = [
-      { x: 0, y: 0 },
-      { x: 50, y: 250 },
-      { x: 0, y: 250 }
-    ];
-
-    let rightTriangleCoordinates = [
-      { x: 200, y: 0 },
-      { x: 150, y: 250 },
-      { x: 200, y: 250 }
-    ];
-
-    const convertCoordinatesToPoints = coordinates => coordinates.map(c => `${c.x},${c.y}`).join(" ");
-
-    container.append('polygon').
-      attr('points', convertCoordinatesToPoints(leftTriangleCoordinates)).
-      attr('fill', '#ffffff');
-
-    container.append('polygon').
-      attr('points', convertCoordinatesToPoints(rightTriangleCoordinates)).
-      attr('fill', '#ffffff');
   }
 });
