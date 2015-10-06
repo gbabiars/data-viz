@@ -1,23 +1,17 @@
 /* global d3 */
 
 import Ember from 'ember';
-import _ from 'npm:lodash'
 
 const borderSize = 5;
 const minHeight = 1;
 
 export default Ember.Component.extend({
   didInsertElement() {
-    let data = [
-      { value: 48300, color: '#ff0000' },
-      { value: 18000, color: '#00ff00' },
-      { value: 26000, color: '#0000ff' },
-      { value: 12700, color: '#ffff00' }
-    ];
+    let data = this.get('data');
     let total = data.reduce((prev, curr) => prev + curr.value, 0);
 
-    let width = 200;
-    let height = 200;
+    let width = this.get('width');
+    let height = this.get('height');
 
     let y = d3.scale.linear().domain([0, total]).range([0, height]);
 
