@@ -24,7 +24,7 @@ export default Ember.Component.extend({
     let container = d3.select(this.get('element')).
       append('svg').
       attr('width', width).
-      attr('height', height);
+      attr('height', height + 50); // give enough for overflow, could calculate to be accurate
 
     const calculateHeight = datum => Math.max(y(datum.value), minHeight);
 
