@@ -38,5 +38,28 @@ export default Ember.Component.extend({
       attr('width', width).
       attr('height', calculateHeight).
       attr('fill', datum => datum.color);
+
+
+    let leftTriangleCoordinates = [
+      { x: 0, y: 0 },
+      { x: 50, y: 250 },
+      { x: 0, y: 250 }
+    ];
+
+    let rightTriangleCoordinates = [
+      { x: 200, y: 0 },
+      { x: 150, y: 250 },
+      { x: 200, y: 250 }
+    ];
+
+    const convertCoordinatesToPoints = coordinates => coordinates.map(c => `${c.x},${c.y}`).join(" ");
+
+    container.append('polygon').
+      attr('points', convertCoordinatesToPoints(leftTriangleCoordinates)).
+      attr('fill', '#ffffff');
+
+    container.append('polygon').
+      attr('points', convertCoordinatesToPoints(rightTriangleCoordinates)).
+      attr('fill', '#ffffff');
   }
 });
