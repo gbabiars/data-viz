@@ -7,18 +7,18 @@ export default Ember.Component.extend({
 
   'font-size': '15px',
 
-  text: Ember.computed.alias('data.text'),
+  text: '',
 
-  x: Ember.computed('data', function() {
-    let coordinates = this.get('data.coordinates');
+  x: Ember.computed('coordinates', function() {
+    let coordinates = this.get('coordinates');
     let xLeft = coordinates[2].x;
     let xRight = coordinates[3].x;
 
     return xRight - (xRight - xLeft) / 2 + 10;
   }),
 
-  y: Ember.computed('data', function() {
-    let coordinates = this.get('data.coordinates');
+  y: Ember.computed('coordinates', function() {
+    let coordinates = this.get('coordinates');
     let yBottom = coordinates[2].y;
     let yTop = coordinates[3].y;
 

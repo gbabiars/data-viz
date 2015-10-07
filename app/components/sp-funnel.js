@@ -38,7 +38,12 @@ export default Ember.Component.extend({
         { x: width - xStart, y: yTop }
       ];
 
-      return _.assign({}, datum, { coordinates: coordinates });
+      return {
+        value: datum.value,
+        color: datum.color,
+        text: datum.text,
+        coordinates: coordinates
+      };
     });
   })
 });

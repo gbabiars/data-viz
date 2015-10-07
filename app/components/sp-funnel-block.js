@@ -4,9 +4,9 @@ export default Ember.Component.extend({
   tagName: 'polygon',
   attributeBindings: ['points', 'fill'],
 
-  points: Ember.computed('data', function() {
-    return this.get('data.coordinates').map(c => `${c.x},${c.y}`).join(" ");
+  points: Ember.computed('coordinates', function() {
+    return this.get('coordinates').map(c => `${c.x},${c.y}`).join(" ");
   }),
 
-  fill: Ember.computed.alias('data.color')
+  fill: Ember.computed.alias('color')
 });
