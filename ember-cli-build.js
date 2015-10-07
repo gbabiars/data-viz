@@ -8,6 +8,10 @@ module.exports = function(defaults) {
 
   app.import('bower_components/d3/d3.js');
 
+  app.import('bower_components/highcharts/highcharts.src.js');
+  app.import('bower_components/highcharts/themes/gray.js');
+  app.import('bower_components/highcharts/highcharts-more.src.js');
+
   // Use `app.import` to add additional libraries to the generated
   // output files.
   //
