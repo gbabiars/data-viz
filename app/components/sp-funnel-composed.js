@@ -44,5 +44,11 @@ export default Ember.Component.extend({
         coordinates: coordinates
       };
     });
-  })
+  }),
+
+  actions: {
+    blockSelected(text) {
+      alert(`You clicked ${text}!`);
+    }
+  }
 });

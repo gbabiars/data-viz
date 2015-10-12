@@ -8,5 +8,10 @@ export default Ember.Component.extend({
     return this.get('coordinates').map(c => `${c.x},${c.y}`).join(" ");
   }),
 
-  fill: Ember.computed.alias('color')
+  fill: Ember.computed.alias('color'),
+
+  click() {
+    let text = this.get('text');
+    this.sendAction('on-click', text);
+  }
 });
